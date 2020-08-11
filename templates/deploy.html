@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>AIR DELAY PREDICTION</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/new4.css') }}">
+<style type="text/css">
+  body {
+    background-image: url({{ url_for('static',filename='flight.jpg')}});
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+h1{
+  font-size: 60px;
+  font-family:inherit;
+}
+h3{font-family: sans-serif;}
+</style>
+</head>
+
+<body>
+ <div class="login">
+	<h1>Predict flight delay</h1>
+  <hr noshading>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+
+         <h3 class="card-title">Select The Airline You Wish to Travel</h3>
+                            <!-- Airline -->
+                            <select name="AIRLINE" id="AIRLINE" required="required">
+                                <option value="0">AA</option>
+                                <option value="1">AS</option>
+                                <option value="2">B6</option>
+                                <option value="3">DL</option>
+                                <option value="4">EV</option>
+                                <option value="5">F9</option>
+                                <option value="6">HA</option>
+                                <option value="7">MQ</option>
+                                <option value="8">NK</option>
+                                <option value="9">OO</option>
+                                <option value="10">UA</option>
+                                <option value="11">US</option>
+                                <option value="12">VX</option>
+                                <option value="13">WN</option>
+                            </select><br><br>
+
+
+        <input type="text" name="MONTH" placeholder="MONTH" required="required" /><small id="MONTHHelp" class="form-text text-muted">Enter any value from 1 to 12 </small><br><br>
+        <input type="text" name="DAY" placeholder="DAY" required="required" /><small id="DAYHelp" class="form-text text-muted">Enter any value from 1 to 31</small><br><br>
+		    <input type="text" name="DAY_OF_WEEK" placeholder="DAY_OF_WEEK" required="required" /><small id="DAY_OF_WEEKHelp" class="form-text text-muted">Enter any value from 1 to 7</small><br><br>
+        <input type="text" name="SCHEDULED_DEPARTURE" placeholder="SCHEDULED_DEPARTURE" required="required" /><small id="SCHEDULED_DEPARTUREHelp" class="form-text text-muted">Enter SCHEDULED_DEPARTURE of flight</small><br><br>
+        <input type="text" name="DEPARTURE_TIME" placeholder="DEPARTURE_TIME" required="required" /><small id="DEPARTURE_TIME" class="form-text text-muted">Enter DEPARTURE_TIME of flight</small><br><br>
+        <input type="text" name="SCHEDULED_TIME" placeholder="SCHEDULED_TIME" required="required" /><small id="SCHEDULED_TIME" class="form-text text-muted">Enter SCHEDULED_TIME of flight</small><br><br>
+        <input type="text" name="DISTANCE" placeholder="DISTANCE" required="required" /><small id="DISTANCE" class="form-text text-muted">Enter  DISTANCE of flight</small><br><br>
+        <input type="text" name="ARIVAL_TIME" placeholder="ARIVAL_TIME" required="required" /><small id="ARIVAL_TIME" class="form-text text-muted">Enter ARIVAL_TIME of flight</small><br><br>
+        <input type="text" name="SCHEDULED_ARRIVAL" placeholder="SCHEDULED_ARRIVAL" required="required" /><small id="SCHEDULED_ARRIVAL" class="form-text text-muted">Enter SCHEDULED_ARRIVAL of flight</small><br><br>
+        <input type="text" name="ARRIVAL_DELAY" placeholder="ARRIVAL_DELAY" required="required" /><small id="ARRIVAL_DELAY" class="form-text text-muted">Enter ARRIVAL_DELAY of flight</small><br><br>
+
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
